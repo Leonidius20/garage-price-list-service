@@ -1,0 +1,3 @@
+package ua.leonidius.garagepricelistservice.presentation
+
+interface ReturnResult

@@ -8,10 +8,12 @@ import ua.leonidius.garagepricelistservice.presentation.SearchReturnResult
 @Service
 class PriceListFacadeImpl: PriceListFacade {
 
-    override fun getAllDetails(): SearchReturnResult {
-        return SearchReturnResult(DatabaseConnection.getInstance().executeQuery("get").map {
+    override fun getAllDetails(page: Int): SearchReturnResult {
+        if (page > 3) return SearchReturnResult(emptyList<CarDetailReturnResult>().toMutableList())
+
+        return SearchReturnResult(mutableListOf( DatabaseConnection.getInstance().executeQuery("get").map {
             CarDetailReturnResult(it.id!!, it.price, it.name, it.description, it.manufacturer)
-        }.toMutableList())
+        }.toMutableList().get(page - 1)))
     }
 
     override fun getDetailById(id: Int): CarDetailReturnResult {
@@ -22,6 +24,12 @@ class PriceListFacadeImpl: PriceListFacade {
         val result = results[0]
 
         return CarDetailReturnResult(result.id!!, result.price, result.name, result.description, result.manufacturer)
+    }
+
+    override fun search(query: String): SearchReturnResult {
+        return SearchReturnResult(DatabaseConnection.getInstance().executeQuery("get").map {
+            CarDetailReturnResult(it.id!!, it.price, it.name, it.description, it.manufacturer)
+        }.toMutableList().also { it.retainAll { it.name.startsWith(query, ignoreCase = true) } })
     }
 
 }

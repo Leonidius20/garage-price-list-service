@@ -5,8 +5,10 @@ import ua.leonidius.garagepricelistservice.presentation.SearchReturnResult
 
 interface PriceListFacade {
 
-    fun getAllDetails(): SearchReturnResult
+    fun getAllDetails(page: Int): SearchReturnResult
 
     fun getDetailById(id: Int): CarDetailReturnResult
+
+    fun search(query: String): SearchReturnResult
 
 }

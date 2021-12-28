@@ -2,7 +2,7 @@ package ua.leonidius.garagepricelistservice.data
 
 class DatabaseConnection {
 
-    private val repository: CarDetailRepository = CarDetailRepositoryImpl()
+    val repository: CarDetailRepository = CarDetailRepositoryImpl()
 
     fun executeQuery(action: String, vararg params: Int): List<CarDetail> {
         if (action == "get") {

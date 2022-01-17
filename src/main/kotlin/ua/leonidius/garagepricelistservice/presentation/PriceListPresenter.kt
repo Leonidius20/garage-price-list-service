@@ -43,4 +43,9 @@ class PriceListPresenter(private val priceListFacade: PriceListFacade) {
         }
     }
 
+    @GetMapping("/num-pages")
+    fun getNumberOfPages(): Int {
+        return  priceListFacade.getNumberOfPages()
+    }
+
 }

@@ -11,4 +11,6 @@ interface PriceListFacade {
 
     fun search(query: String): SearchReturnResult
 
+    fun getNumberOfPages(): Int
+
 }

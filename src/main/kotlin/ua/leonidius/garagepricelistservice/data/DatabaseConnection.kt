@@ -16,6 +16,8 @@ class DatabaseConnection {
         }
     }
 
+    fun getNumberOfPages() = repository.getNumberOfPages()
+
     companion object {
         private lateinit var connection: DatabaseConnection
 

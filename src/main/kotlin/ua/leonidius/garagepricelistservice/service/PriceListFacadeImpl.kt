@@ -16,6 +16,10 @@ class PriceListFacadeImpl: PriceListFacade {
         }.toMutableList().get(page - 1)))
     }
 
+    override fun getNumberOfPages(): Int {
+        return DatabaseConnection.getInstance().getNumberOfPages()
+    }
+
     override fun getDetailById(id: Int): CarDetailReturnResult {
         val results = DatabaseConnection.getInstance().executeQuery("get", id)
 

@@ -17,5 +17,9 @@ class CarDetailRepositoryImpl: CarDetailRepository {
         return carDetails.find { it.id == id }
     }
 
+    override fun getNumberOfPages(): Int {
+        return carDetails.size // 1 item per page
+    }
+
 
 }

@@ -6,4 +6,6 @@ interface CarDetailRepository {
 
     fun getById(id: Int): CarDetail?
 
+    fun getNumberOfPages(): Int
+
 }
